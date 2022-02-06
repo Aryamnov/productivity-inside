@@ -21,10 +21,7 @@ export function Main(props: IMainProps) {
   React.useEffect(() => {
     api
       .getEpisodes()
-      .then((res: episodes) => {
-        setEpisodes(res);
-        console.log(res);
-      })
+      .then((res: episodes) => setEpisodes(res))
       .catch((err) => console.log(err));
   }, []);
 

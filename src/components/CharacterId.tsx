@@ -7,7 +7,7 @@ import { CharacterEpisode } from "./CharacterEpisode";
 export interface ICharacterIdProps {}
 
 export function CharacterId(props: ICharacterIdProps) {
-  let { id } = useParams<{ id: string }>();
+  let { id } = useParams<{ id: string }>(); //получаем id персонажа
 
   const [characterId, setCharacterId] = React.useState<character>();
 
@@ -16,10 +16,7 @@ export function CharacterId(props: ICharacterIdProps) {
   React.useEffect(() => {
     api
       .getCharacted(characterLink)
-      .then((res: character) => {
-        setCharacterId(res);
-        console.log(res);
-      })
+      .then((res: character) => setCharacterId(res))
       .catch((err) => console.log(err));
   }, []);
 

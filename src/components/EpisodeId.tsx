@@ -16,17 +16,14 @@ export interface episode {
 export interface IEpisodeIdProps {}
 
 export function EpisodeId(props: IEpisodeIdProps) {
-  let { id } = useParams<{ id: string }>();
+  let { id } = useParams<{ id: string }>(); //получаем id эпизода
 
   const [episode, setEpisode] = React.useState<episode>();
 
   React.useEffect(() => {
     api
       .getEpisode(id)
-      .then((res) => {
-        console.log(res);
-        setEpisode(res);
-      })
+      .then((res) => setEpisode(res))
       .catch((err) => console.log(err));
   }, []);
   return (

@@ -16,17 +16,14 @@ export interface location {
 export interface ILocationIdProps {}
 
 export function LocationId(props: ILocationIdProps) {
-  let { id } = useParams<{ id: string }>();
+  let { id } = useParams<{ id: string }>(); //получаем id локации
 
   const [location, setLocation] = React.useState<location>();
 
-  React.useEffect(() => {
+  React.useEffect(() => { //получаем данные по локации
     api
       .getLocation(id)
-      .then((res: location) => {
-        console.log(res);
-        setLocation(res);
-      })
+      .then((res: location) => setLocation(res))
       .catch((err) => console.log(err));
   }, []);
 

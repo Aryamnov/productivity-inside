@@ -33,10 +33,7 @@ export function Character(props: ICharacterProps) {
   React.useEffect(() => {
     api
       .getCharacted(props.characterLink)
-      .then((res: character) => {
-        setCharacter(res);
-        console.log(res);
-      })
+      .then((res: character) => setCharacter(res))
       .catch((err) => console.log(err));
   }, []);
 
