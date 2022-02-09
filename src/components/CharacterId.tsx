@@ -26,9 +26,7 @@ export function CharacterId(props: ICharacterIdProps) {
       <ul className="">
         <li className="">Status: {characterId?.status}</li>
         <li className="">Species: {characterId?.species}</li>
-        <li className="">
-          {characterId?.type ? `Type: ${characterId.type}` : ``}
-        </li>
+        {characterId?.type ? (<li className="">Type: {characterId.type}</li>) : ''}
         <li className="">Gender: {characterId?.gender}</li>
       </ul>
       <p className="">

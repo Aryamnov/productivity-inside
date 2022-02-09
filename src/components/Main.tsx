@@ -1,14 +1,13 @@
 import * as React from "react";
 import api from "../utils/api";
 import { Episode } from "./Episode";
+import { urlEpisodeStart } from "../utils/constants";
 
 export interface IMainProps {}
 
 export function Main(props: IMainProps) {
   const [episodes, setEpisodes] = React.useState<Array<{}>>();
-  const [link, setLink] = React.useState(
-    "https://rickandmortyapi.com/api/episode?page=1"
-  );
+  const [link, setLink] = React.useState(urlEpisodeStart);
   const [isFetching, setIsFetching] = React.useState(true);
   const [isAllCard, setIsAllCard] = React.useState(false);
 

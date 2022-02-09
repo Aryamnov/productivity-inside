@@ -1,0 +1,1 @@
+export const urlEpisodeStart = "https://rickandmortyapi.com/api/episode?page=1";

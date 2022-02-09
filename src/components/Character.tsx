@@ -43,7 +43,7 @@ export function Character(props: ICharacterProps) {
       <ul className="">
         <li className="">Status: {character?.status}</li>
         <li className="">Species: {character?.species}</li>
-        <li className="">{character?.type ? `Type: ${character.type}` : ``}</li>
+        {character?.type ? (<li className="">Type: {character.type}</li>) : ''}
         <li className="">Gender: {character?.gender}</li>
       </ul>
       <NavLink exact to={`/characted/${character?.id}`} className="">
