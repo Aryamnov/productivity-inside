@@ -4,24 +4,30 @@ import { Main } from "./Main";
 import { EpisodeId } from "./EpisodeId";
 import { CharacterId } from "./CharacterId";
 import { LocationId } from "./LocationId";
+import { NotFound } from "./NotFound";
 
 export interface IAppProps {}
 
 export function App(props: IAppProps) {
   return (
-    <Switch>
-      <Route path="/episode/:id">
-        <EpisodeId />
-      </Route>
-      <Route path="/characted/:id">
-        <CharacterId />
-      </Route>
-      <Route path="/location/:id">
-        <LocationId />
-      </Route>
-      <Route path="/">
-        <Main />
-      </Route>
-    </Switch>
+    <div className="">
+      <Switch>
+        <Route path="/episode/:id">
+          <EpisodeId />
+        </Route>
+        <Route path="/characted/:id">
+          <CharacterId />
+        </Route>
+        <Route path="/location/:id">
+          <LocationId />
+        </Route>
+        <Route exact path="/">
+          <Main />
+        </Route>
+        <Route path="*">
+          <NotFound />
+        </Route>
+      </Switch>
+    </div>
   );
 }

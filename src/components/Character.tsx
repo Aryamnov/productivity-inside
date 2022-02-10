@@ -24,21 +24,35 @@ export interface character {
 }
 
 export interface ICharacterProps {
-  characterLink: string;
+  character: character
+  //characterLink: string;
 }
 
 export function Character(props: ICharacterProps) {
-  const [character, setCharacter] = React.useState<character>();
+  //const [character, setCharacter] = React.useState<character>();
 
-  React.useEffect(() => {
+  /*React.useEffect(() => {
     api
       .getCharacted(props.characterLink)
       .then((res: character) => setCharacter(res))
       .catch((err) => console.log(err));
-  }, []);
+  }, []);*/
 
   return (
     <div className="">
+      <h2 className="">{props.character.name}</h2>
+      <ul className="">
+        <li className="">Status: {props.character.status}</li>
+        <li className="">Species: {props.character.species}</li>
+        {props.character.type ? (<li className="">Type: {props.character.type}</li>) : ''}
+        <li className="">Gender: {props.character.gender}</li>
+      </ul>
+      <NavLink exact to={`/characted/${props.character.id}`} className="">
+        More about {props.character.name}
+      </NavLink>
+    </div>
+
+    /*<div className="">
       <h2 className="">{character?.name}</h2>
       <ul className="">
         <li className="">Status: {character?.status}</li>
@@ -49,6 +63,6 @@ export function Character(props: ICharacterProps) {
       <NavLink exact to={`/characted/${character?.id}`} className="">
         More about {character?.name}
       </NavLink>
-    </div>
+    </div>*/
   );
 }
