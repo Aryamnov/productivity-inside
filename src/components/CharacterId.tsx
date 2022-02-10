@@ -36,30 +36,30 @@ export function CharacterId(props: ICharacterIdProps) {
   }, [idEpisodes]);
 
   return (
-    <div className="">
-      <h2 className="">{characterId?.name}</h2>
-      <ul className="">
-        <li className="">Status: {characterId?.status}</li>
-        <li className="">Species: {characterId?.species}</li>
+    <div className="character-id">
+      <h2 className="character-id__title">{characterId?.name}</h2>
+      <ul className="character-id__list">
+        <li className="character-id__element">Status: {characterId?.status}</li>
+        <li className="character-id__element">Species: {characterId?.species}</li>
         {characterId?.type ? (
-          <li className="">Type: {characterId.type}</li>
+          <li className="character-id__element">Type: {characterId.type}</li>
         ) : (
           ""
         )}
-        <li className="">Gender: {characterId?.gender}</li>
+        <li className="character-id__element">Gender: {characterId?.gender}</li>
       </ul>
-      <p className="">
+      <p className="character-id__location">
         Location:{" "}
         <NavLink
-          className=""
+          className="character-id__link"
           exact
           to={`/location/${characterId?.location.url.substr(41)}`}
         >
           {characterId?.location.name}
         </NavLink>
       </p>
-      <p className="">Episodes:</p>
-      <ul className="">
+      <p className="character-id__subtitle">Episodes:</p>
+      <ul className="character-id__episodes">
         {allEpisodes.length
           ? allEpisodes.map((episode: episode) => (
               <Episode episode={episode} key={episode?.id} />

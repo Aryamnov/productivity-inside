@@ -10,7 +10,7 @@ export interface IAppProps {}
 
 export function App(props: IAppProps) {
   return (
-    <div className="">
+    <div className="page">
       <Switch>
         <Route path="/episode/:id">
           <EpisodeId />

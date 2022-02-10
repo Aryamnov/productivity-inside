@@ -19,10 +19,11 @@ export function LocationId(props: ILocationIdProps) {
   let { id } = useParams<{ id: string }>(); //получаем id локации
 
   const [location, setLocation] = React.useState<location>();
-  const [idCharacters, setIdCharacters] = React.useState('');
+  const [idCharacters, setIdCharacters] = React.useState("");
   const [allCharacters, setAllCharacters] = React.useState([]);
 
-  React.useEffect(() => { //получаем данные по локации
+  React.useEffect(() => {
+    //получаем данные по локации
     api
       .getLocation(id)
       .then((res: location) => {
@@ -30,7 +31,7 @@ export function LocationId(props: ILocationIdProps) {
         const characterId = res.residents.map((item: string) => {
           return item.substr(42);
         });
-        setIdCharacters(characterId.join(','));
+        setIdCharacters(characterId.join(","));
       })
       .catch((err) => console.log(err));
   }, []);
@@ -40,17 +41,23 @@ export function LocationId(props: ILocationIdProps) {
       .getAllCharacted(idCharacters)
       .then((res) => setAllCharacters(res))
       .catch((err) => console.log(err));
-  }, [idCharacters])
+  }, [idCharacters]);
 
   return (
-    <div className="">
-      <h2 className="">{location?.name}</h2>
-      <p className="">Dimension: {location?.dimension}</p>
-      {location?.type ? (<p className="">Type: {location.type}</p>) : ''}
-      <p className="">Residents:</p>
-      {allCharacters.length ? (allCharacters.map((character: character) => (
-        <Character character={character} key={character.id} />
-      ))) : ''}
+    <div className="location">
+      <h2 className="location__title">{location?.name}</h2>
+      <p className="location__text">Dimension: {location?.dimension}</p>
+      {location?.type ? (
+        <p className="location__type">Type: {location.type}</p>
+      ) : (
+        ""
+      )}
+      <p className="location__residents">Residents:</p>
+      {allCharacters.length
+        ? allCharacters.map((character: character) => (
+            <Character character={character} key={character.id} />
+          ))
+        : ""}
     </div>
   );
 }

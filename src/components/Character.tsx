@@ -24,45 +24,32 @@ export interface character {
 }
 
 export interface ICharacterProps {
-  character: character
-  //characterLink: string;
+  character: character;
 }
 
 export function Character(props: ICharacterProps) {
-  //const [character, setCharacter] = React.useState<character>();
-
-  /*React.useEffect(() => {
-    api
-      .getCharacted(props.characterLink)
-      .then((res: character) => setCharacter(res))
-      .catch((err) => console.log(err));
-  }, []);*/
-
   return (
-    <div className="">
-      <h2 className="">{props.character.name}</h2>
-      <ul className="">
-        <li className="">Status: {props.character.status}</li>
-        <li className="">Species: {props.character.species}</li>
-        {props.character.type ? (<li className="">Type: {props.character.type}</li>) : ''}
-        <li className="">Gender: {props.character.gender}</li>
+    <div className="character">
+      <h2 className="character__title">{props.character.name}</h2>
+      <ul className="character__list">
+        <li className="character__element">Status: {props.character.status}</li>
+        <li className="character__element">
+          Species: {props.character.species}
+        </li>
+        {props.character.type ? (
+          <li className="character__element">Type: {props.character.type}</li>
+        ) : (
+          ""
+        )}
+        <li className="character__element">Gender: {props.character.gender}</li>
       </ul>
-      <NavLink exact to={`/characted/${props.character.id}`} className="">
+      <NavLink
+        exact
+        to={`/characted/${props.character.id}`}
+        className="character__link"
+      >
         More about {props.character.name}
       </NavLink>
     </div>
-
-    /*<div className="">
-      <h2 className="">{character?.name}</h2>
-      <ul className="">
-        <li className="">Status: {character?.status}</li>
-        <li className="">Species: {character?.species}</li>
-        {character?.type ? (<li className="">Type: {character.type}</li>) : ''}
-        <li className="">Gender: {character?.gender}</li>
-      </ul>
-      <NavLink exact to={`/characted/${character?.id}`} className="">
-        More about {character?.name}
-      </NavLink>
-    </div>*/
   );
 }
