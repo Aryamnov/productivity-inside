@@ -29,11 +29,13 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "build"),
     filename: "bundle.js",
+    publicPath: '/'
   },
   devServer: {
     static: path.join(__dirname, "build"),
     compress: true,
     port: 4000,
+    historyApiFallback: true,
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin({
