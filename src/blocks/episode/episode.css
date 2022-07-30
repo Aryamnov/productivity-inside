@@ -1,3 +1,10 @@
 .episode {
-    
+    border: 1px dotted #000000;
+    margin-bottom: 25px;
+    max-width: 400px;
+    transition: linear 0.5s;
+}
+
+.episode:hover {
+    background-color: #CCCCCC;
 }
