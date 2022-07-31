@@ -38,7 +38,9 @@ export function CharacterId() {
       <h2 className="character-id__title">{characterId?.name}</h2>
       <ul className="character-id__list">
         <li className="character-id__element">Status: {characterId?.status}</li>
-        <li className="character-id__element">Species: {characterId?.species}</li>
+        <li className="character-id__element">
+          Species: {characterId?.species}
+        </li>
         {characterId?.type ? (
           <li className="character-id__element">Type: {characterId.type}</li>
         ) : (
@@ -58,11 +60,13 @@ export function CharacterId() {
       </p>
       <p className="character-id__subtitle">Episodes:</p>
       <ul className="character-id__episodes">
-        {allEpisodes.length
-          ? allEpisodes.map((episode: Iepisode) => (
-              <Episode episode={episode} key={episode?.id} />
+        {allEpisodes.length ? (
+          allEpisodes.map((episode: Iepisode) => (
+            <Episode episode={episode} key={episode?.id} />
           ))
-          : ''}
+        ) : (
+          <Episode episode={allEpisodes as any} />
+        )}
       </ul>
     </div>
   );

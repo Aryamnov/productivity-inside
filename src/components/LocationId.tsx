@@ -51,11 +51,13 @@ export function LocationId() {
         ''
       )}
       <p className="location__residents">Residents:</p>
-      {allCharacters.length
-        ? allCharacters.map((character: Icharacter) => (
-            <Character character={character} key={character.id} />
+      {allCharacters.length ? (
+        allCharacters.map((character: Icharacter) => (
+          <Character character={character} key={character.id} />
         ))
-        : ''}
+      ) : (
+        <Character character={allCharacters as any} />
+      )}
     </div>
   );
 }
