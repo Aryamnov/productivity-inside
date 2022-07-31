@@ -1,9 +1,9 @@
-import * as React from "react";
-import api from "../utils/api";
-import { useParams } from "react-router-dom";
-import { character, Character } from "./Character";
+import * as React from 'react';
+import { useParams } from 'react-router-dom';
+import api from '../utils/api';
+import { Icharacter, Character } from './Character';
 
-export interface episode {
+export interface Iepisode {
   id: number;
   name: string;
   air_date: string;
@@ -15,11 +15,11 @@ export interface episode {
 
 export interface IEpisodeIdProps {}
 
-export function EpisodeId(props: IEpisodeIdProps) {
-  let { id } = useParams<{ id: string }>(); //получаем id эпизода
+export function EpisodeId() {
+  const { id } = useParams<{ id: string }>(); // получаем id эпизода
 
-  const [episode, setEpisode] = React.useState<episode>();
-  const [idCharacters, setIdCharacters] = React.useState("");
+  const [episode, setEpisode] = React.useState<Iepisode>();
+  const [idCharacters, setIdCharacters] = React.useState('');
   const [allCharacters, setAllCharacters] = React.useState([]);
 
   React.useEffect(() => {
@@ -27,10 +27,8 @@ export function EpisodeId(props: IEpisodeIdProps) {
       .getEpisode(id)
       .then((res) => {
         setEpisode(res);
-        const characterId = res.characters.map((item: string) => {
-          return item.substr(42);
-        });
-        setIdCharacters(characterId.join(","));
+        const characterId = res.characters.map((item: string) => item.substr(42));
+        setIdCharacters(characterId.join(','));
       })
       .catch((err) => console.log(err));
   }, []);
@@ -49,10 +47,10 @@ export function EpisodeId(props: IEpisodeIdProps) {
       <p className="episode-id__episode">Episode: {episode?.episode}</p>
       <p className="episode-id__characted">Characters:</p>
       {allCharacters.length
-        ? allCharacters.map((character: character) => (
+        ? allCharacters.map((character: Icharacter) => (
             <Character character={character} key={character.id} />
-          ))
-        : ""}
+        ))
+        : ''}
     </div>
   );
 }

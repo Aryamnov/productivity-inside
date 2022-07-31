@@ -1,9 +1,9 @@
-import * as React from "react";
-import { NavLink } from "react-router-dom";
+import * as React from 'react';
+import { NavLink } from 'react-router-dom';
 
 export interface INotFoundProps {}
 
-export function NotFound(props: INotFoundProps) {
+export function NotFound() {
   return (
     <section className="not-found">
       <h1 className="not-found__header">404</h1>

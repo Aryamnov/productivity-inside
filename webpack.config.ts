@@ -2,6 +2,7 @@ import path from "path";
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -21,6 +22,20 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 1
+          }
+        },
+        'postcss-loader']
+      },
+      {
+        test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
+        type: 'asset/resource'
+      },
     ],
   },
   resolve: {
@@ -28,8 +43,9 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "build"),
-    filename: "bundle.js",
-    publicPath: '/'
+    filename: "[name].bundle.js",
+    chunkFilename: '[name].bundle.js',
+    publicPath: ''
   },
   devServer: {
     static: path.join(__dirname, "build"),
@@ -45,6 +61,18 @@ module.exports = {
       template: './src/index.html'
     }),
     new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin(),
   ],
   mode: 'development',
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
+        },
+      },
+    }
+  }
 };

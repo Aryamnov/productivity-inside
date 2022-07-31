@@ -1,16 +1,16 @@
-import * as React from "react";
-import { Link } from "react-router-dom";
+import * as React from 'react';
+import { Link } from 'react-router-dom';
 
 export interface IEpisodeProps {
   episode:
-    | {
-        id: number;
-        name: string;
-        air_date: string;
-        episode: string;
-        characters: [];
-      }
-    | undefined;
+  | {
+    id: number;
+    name: string;
+    air_date: string;
+    episode: string;
+    characters: [];
+  }
+  | undefined;
 }
 
 export function Episode(props: IEpisodeProps) {

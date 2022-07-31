@@ -1,9 +1,9 @@
-import * as React from "react";
-import api from "../utils/api";
-import { useParams } from "react-router-dom";
-import { character, Character } from "./Character";
+import * as React from 'react';
+import { useParams } from 'react-router-dom';
+import api from '../utils/api';
+import { Icharacter, Character } from './Character';
 
-export interface location {
+export interface Ilocation {
   id: number;
   name: string;
   type: string;
@@ -15,23 +15,21 @@ export interface location {
 
 export interface ILocationIdProps {}
 
-export function LocationId(props: ILocationIdProps) {
-  let { id } = useParams<{ id: string }>(); //получаем id локации
+export function LocationId() {
+  const { id } = useParams<{ id: string }>(); // получаем id локации
 
-  const [location, setLocation] = React.useState<location>();
-  const [idCharacters, setIdCharacters] = React.useState("");
+  const [location, setLocation] = React.useState<Ilocation>();
+  const [idCharacters, setIdCharacters] = React.useState('');
   const [allCharacters, setAllCharacters] = React.useState([]);
 
   React.useEffect(() => {
-    //получаем данные по локации
+    // получаем данные по локации
     api
       .getLocation(id)
-      .then((res: location) => {
+      .then((res: Ilocation) => {
         setLocation(res);
-        const characterId = res.residents.map((item: string) => {
-          return item.substr(42);
-        });
-        setIdCharacters(characterId.join(","));
+        const characterId = res.residents.map((item: string) => item.substr(42));
+        setIdCharacters(characterId.join(','));
       })
       .catch((err) => console.log(err));
   }, []);
@@ -50,14 +48,16 @@ export function LocationId(props: ILocationIdProps) {
       {location?.type ? (
         <p className="location__type">Type: {location.type}</p>
       ) : (
-        ""
+        ''
       )}
       <p className="location__residents">Residents:</p>
-      {allCharacters.length
-        ? allCharacters.map((character: character) => (
-            <Character character={character} key={character.id} />
-          ))
-        : ""}
+      {allCharacters.length ? (
+        allCharacters.map((character: Icharacter) => (
+          <Character character={character} key={character.id} />
+        ))
+      ) : (
+        <Character character={allCharacters as any} />
+      )}
     </div>
   );
 }

@@ -1,0 +1,25 @@
+{
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb-base",
+        "airbnb-typescript",
+        "plugin:import/typescript"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "no-underscore-dangle":  ["error", { "allow": ["_id", "_message", "_headers", "_checkResponse", "_url"] }],
+        "linebreak-style": 0
+    }
+}
