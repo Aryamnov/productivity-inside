@@ -1,8 +1,7 @@
-import * as React from "react";
-import api from "../utils/api";
-import { NavLink } from "react-router-dom";
+import * as React from 'react';
+import { NavLink } from 'react-router-dom';
 
-export interface character {
+export interface Icharacter {
   id: number;
   name: string;
   status: string;
@@ -24,7 +23,7 @@ export interface character {
 }
 
 export interface ICharacterProps {
-  character: character;
+  character: Icharacter;
 }
 
 export function Character(props: ICharacterProps) {
@@ -39,7 +38,7 @@ export function Character(props: ICharacterProps) {
         {props.character.type ? (
           <li className="character__element">Type: {props.character.type}</li>
         ) : (
-          ""
+          ''
         )}
         <li className="character__element">Gender: {props.character.gender}</li>
       </ul>

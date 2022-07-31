@@ -1,14 +1,14 @@
-import * as React from "react";
-import { Route, Switch } from "react-router-dom";
-import { Main } from "./Main";
-import { EpisodeId } from "./EpisodeId";
-import { CharacterId } from "./CharacterId";
-import { LocationId } from "./LocationId";
-import { NotFound } from "./NotFound";
+import * as React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { Main } from './Main';
+import { EpisodeId } from './EpisodeId';
+import { CharacterId } from './CharacterId';
+import { LocationId } from './LocationId';
+import { NotFound } from './NotFound';
 
 export interface IAppProps {}
 
-export function App(props: IAppProps) {
+export function App() {
   return (
     <div className="page">
       <Switch>
