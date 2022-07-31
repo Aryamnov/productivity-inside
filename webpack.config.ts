@@ -43,7 +43,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "build"),
-    filename: "bundle.js",
+    filename: "[name].bundle.js",
+    chunkFilename: '[name].bundle.js',
     publicPath: ''
   },
   devServer: {
@@ -63,4 +64,15 @@ module.exports = {
     new MiniCssExtractPlugin(),
   ],
   mode: 'development',
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
+        },
+      },
+    }
+  }
 };
